@@ -19,6 +19,7 @@
     <Property Name="Id" Type="Int32" Nullable="false" />
     <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="price" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <NavigationProperty Name="ProductOrder" Relationship="OrderPlatformDBModel.FK_ProductOrder_Product" FromRole="Product" ToRole="ProductOrder" />
   </EntityType>
   <EntityType Name="ProductOrder">
     <Key>
@@ -29,6 +30,8 @@
     <Property Name="total_price" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
     <Property Name="orderId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Order" Relationship="Self.FK_ProductOrder_Order" FromRole="ProductOrder" ToRole="Order" />
+    <Property Name="productId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Product" Relationship="OrderPlatformDBModel.FK_ProductOrder_Product" FromRole="ProductOrder" ToRole="Product" />
   </EntityType>
   <EntityType Name="State">
     <Key>
@@ -108,5 +111,23 @@
       <End Role="Order" EntitySet="Order" />
       <End Role="ProductOrder" EntitySet="ProductOrder" />
     </AssociationSet>
+    <AssociationSet Name="FK_ProductOrder_Product" Association="OrderPlatformDBModel.FK_ProductOrder_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="ProductOrder" EntitySet="ProductOrder" />
+    </AssociationSet>
   </EntityContainer>
+  <Association Name="FK_ProductOrder_Product">
+    <End Type="OrderPlatformDBModel.Product" Role="Product" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="OrderPlatformDBModel.ProductOrder" Role="ProductOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductOrder">
+        <PropertyRef Name="productId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

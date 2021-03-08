@@ -23,6 +23,7 @@
     <EntitySetMapping Name="ProductOrder">
       <EntityTypeMapping TypeName="OrderPlatformDBModel.ProductOrder">
         <MappingFragment StoreEntitySet="ProductOrder">
+          <ScalarProperty Name="productId" ColumnName="productId" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="quantity" ColumnName="quantity" />
           <ScalarProperty Name="total_price" ColumnName="total_price" />

@@ -25,6 +25,7 @@
     <Property Name="quantity" Type="int" Nullable="false" />
     <Property Name="total_price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
     <Property Name="orderId" Type="int" Nullable="false" />
+    <Property Name="productId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="State">
     <Key>
@@ -84,6 +85,20 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_ProductOrder_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ProductOrder" Type="Self.ProductOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductOrder">
+        <PropertyRef Name="productId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="OrderPlatformDBModelStoreContainer">
     <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
@@ -100,6 +115,10 @@
     </AssociationSet>
     <AssociationSet Name="FK_ProductOrder_Order" Association="Self.FK_ProductOrder_Order">
       <End Role="Order" EntitySet="Order" />
+      <End Role="ProductOrder" EntitySet="ProductOrder" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductOrder_Product" Association="Self.FK_ProductOrder_Product">
+      <End Role="Product" EntitySet="Product" />
       <End Role="ProductOrder" EntitySet="ProductOrder" />
     </AssociationSet>
   </EntityContainer>

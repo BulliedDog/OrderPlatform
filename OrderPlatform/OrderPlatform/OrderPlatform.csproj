@@ -130,6 +130,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\StateController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="db.Context.cs">
       <AutoGen>True</AutoGen>
@@ -274,6 +275,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\State\" />
     <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>

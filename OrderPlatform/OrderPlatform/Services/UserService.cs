@@ -11,9 +11,9 @@ namespace OrderPlatform.Services
     {
         public OrderPlatformDBEntities db = new OrderPlatformDBEntities();
 
-        public UserViewModel Get(int id)
+        public UserModel Get(int id)
         {
-            var model = new UserViewModel();
+            var model = new UserModel();
             var dbrow = db.User.Find(id);
             model.id = dbrow.Id;
             model.username = dbrow.username;
@@ -22,7 +22,7 @@ namespace OrderPlatform.Services
             return model;
         }
 
-        public void Set(UserViewModel model)
+        public void Set(UserModel model)
         {
               //////////////////////////////////////////////
              //creates a new EMPTY record in the database//

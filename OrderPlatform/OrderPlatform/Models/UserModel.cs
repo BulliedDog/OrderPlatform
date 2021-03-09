@@ -5,7 +5,7 @@ using System.Web;
 
 namespace OrderPlatform.Models
 {
-    public class UserViewModel
+    public class UserModel
     {
         public int id { get; set; }
         public string username { get; set; }

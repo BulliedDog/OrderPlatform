@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace OrderPlatform.Services
 {
@@ -46,6 +47,19 @@ namespace OrderPlatform.Services
             }
 
             db.SaveChanges();
+        }
+
+        public IEnumerable<SelectListItem> GetList()
+        {
+            var dbrows = db.User.OrderBy(x => x.username);
+            foreach (var dbrow in dbrows)
+            {
+                yield return new SelectListItem()
+                {
+                    Text = dbrow.username,
+                    Value = dbrow.Id.ToString(),
+                };
+            }
         }
     }
 }

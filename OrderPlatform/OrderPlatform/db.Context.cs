@@ -30,5 +30,7 @@ namespace OrderPlatform
         public virtual DbSet<ProductOrder> ProductOrder { get; set; }
         public virtual DbSet<State> State { get; set; }
         public virtual DbSet<User> User { get; set; }
+
+        public System.Data.Entity.DbSet<OrderPlatform.Models.OrderEditModel> OrderEditModels { get; set; }
     }
 }

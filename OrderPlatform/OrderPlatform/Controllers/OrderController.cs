@@ -12,21 +12,27 @@ namespace OrderPlatform.Controllers
     {
         public OrderService service = new OrderService();
         public UserService userService = new UserService();
+        public StateService stateService = new StateService();
         // GET: Order
+
         public ActionResult Index()
         {
-            return View(service.Get());
+            return View(service.Gets());
         }
-
-        public ActionResult Edit(int id) //this edit shows the page but doesn't do any post
+        
+        [HttpGet]
+        public ActionResult Edit(int id) //this edit shows the page but doesn't do any post//
         {
             ViewBag.userList = userService.GetList(); //passes the list of names corresponding to the userId field//
-            return View(new OrderEditModel());
+            ViewBag.stateList = stateService.GetList(); //passes the list of states corresponding to the stateId field//
+            return View(service.Get(id));
         }
 
-        public ActionResult Edit(OrderEditModel model) //this edit shows nothing but does the post
+        [HttpPost]
+        public ActionResult Edit(OrderEditModel model) //this edit shows nothing but does the post//
         {
-
+            service.Post(model);
+            return RedirectToAction("Index"); //redirects to another action of the same controller in this case, you can also redirect to another controller set apart//
         }
     }
 }

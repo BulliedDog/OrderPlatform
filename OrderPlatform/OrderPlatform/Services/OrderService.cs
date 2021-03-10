@@ -26,10 +26,9 @@ namespace OrderPlatform.Services
         public OrderEditModel Get(int id)
         {
             var model = new OrderEditModel();
-            if(id != 0)
+            if (id != 0)
             {
                 var dbrow = db.Order.Find(id);
-                
 
                 model.id = dbrow.Id;
                 model.date = dbrow.date;
@@ -39,10 +38,10 @@ namespace OrderPlatform.Services
             return model;
         }
 
-        public void Post(OrderEditModel model)
+        public void Set(OrderEditModel model)
         {
             var dbrow = new Order();
-            if(model.id != 0 )
+            if (model.id != 0)
             {
                 dbrow = db.Order.Find(model.id);
             }
@@ -51,14 +50,19 @@ namespace OrderPlatform.Services
             dbrow.userId = model.userId;
             dbrow.stateId = model.stateId;
 
-            if(model.id == 0)
+            if (model.id == 0)
             {
                 db.Order.Add(dbrow);
             }
 
             db.SaveChanges();
         }
+
+        public void del(int id)
+        {
+            db.Order.Remove(db.Order.Find(id));
+
+            db.SaveChanges();
+        }
     }
-
-
 }

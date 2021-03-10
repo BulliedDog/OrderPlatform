@@ -1,9 +1,5 @@
 ﻿using OrderPlatform.Models;
 using OrderPlatform.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace OrderPlatform.Controllers
@@ -11,11 +7,11 @@ namespace OrderPlatform.Controllers
     public class StateController : Controller
     {
         public StateService service = new StateService();
-        
+
         [HttpGet]
         public ActionResult Index()
         {
-            return View(service.GetList());
+            return View(service.Gets());
         }
 
         [HttpGet]
@@ -28,6 +24,13 @@ namespace OrderPlatform.Controllers
         public ActionResult Edit(StateModel model)
         {
             service.Set(model);
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult Delete(int id)
+        {
+            service.del(id);
             return RedirectToAction("Index");
         }
     }

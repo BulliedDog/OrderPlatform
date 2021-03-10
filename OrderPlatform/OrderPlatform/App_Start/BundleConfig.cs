@@ -30,7 +30,6 @@ namespace OrderPlatform
 
             bundles.Add(new StyleBundle("~/bundles/jquery-ui-css").Include(
                         "~/Content/themes/base/jquery-ui.css").Include("~/Content/themes/base/datepicker.css"));
-
         }
     }
 }

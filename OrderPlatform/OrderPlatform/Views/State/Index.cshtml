@@ -1,0 +1,35 @@
+﻿@model IEnumerable<OrderPlatform.Models.StateModel>
+
+@{
+    ViewBag.Title = "States";
+}
+
+<h2>States</h2>
+
+<div>
+    <a class="btn btn-danger" href="~/State/Edit/0" role="button">Create new state</a>
+</div>
+
+<br />
+
+<table class="table table-bordered table-responsive table-condensed">
+    <thead>
+        <tr class="btn-danger">
+            <th>@Html.DisplayNameFor(m => m.id)</th>
+            <th>@Html.DisplayNameFor(m => m.name)</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var m in Model)
+        {
+            <tr>
+                <td>@m.id</td>
+                <td>@m.name</td>
+                <td><a href="~/State/Edit/@m.id">Edit</a></td>
+                <td><a href="~/State/Delete/@m.id">Delete</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

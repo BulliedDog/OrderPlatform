@@ -10,26 +10,26 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
+   <div class="form-horizontal">
         <h4>OrderEditModel</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.id)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.date, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.date, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.date, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.date, new { htmlAttributes = new { @class = "form-control" } } )
                 @Html.ValidationMessageFor(model => model.date, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             @*//model.userId grabs the userId field but Displays the right name*@
-            @Html.LabelFor(model => model.userId, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.userId, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @*//This is he dropdown list*@
-                @Html.DropDownListFor(model => model.userId, new SelectList(ViewBag.userList, "Value", "Text"), new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => model.userId, new SelectList(ViewBag.userList, "Value", "Text"), new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.userId, "", new { @class = "text-danger" })
                 @*//////////////////////////*@
             </div>
@@ -38,7 +38,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.stateId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.stateId, new SelectList(ViewBag.stateList, "Value", "Text"),new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => model.stateId, new SelectList(ViewBag.stateList, "Value", "Text"),  new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.stateId, "", new { @class = "text-danger" })
             </div>
         </div>

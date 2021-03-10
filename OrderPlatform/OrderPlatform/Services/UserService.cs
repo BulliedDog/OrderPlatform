@@ -1,8 +1,6 @@
 ﻿using OrderPlatform.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace OrderPlatform.Services
@@ -24,14 +22,14 @@ namespace OrderPlatform.Services
 
         public void Set(UserModel model)
         {
-              //////////////////////////////////////////////
-             //creates a new EMPTY record in the database//
             //////////////////////////////////////////////
-            
+            //creates a new EMPTY record in the database//
+            //////////////////////////////////////////////
+
             var dbrow = new User();
 
             //////////////////////////////////////////////
-            
+
             if (model.id != 0)
             {
                 dbrow = db.User.Find(model.id);

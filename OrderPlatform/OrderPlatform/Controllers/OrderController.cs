@@ -1,9 +1,5 @@
 ﻿using OrderPlatform.Models;
 using OrderPlatform.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace OrderPlatform.Controllers
@@ -19,7 +15,7 @@ namespace OrderPlatform.Controllers
         {
             return View(service.Gets());
         }
-        
+
         [HttpGet]
         public ActionResult Edit(int id) //this edit shows the page but doesn't do any post//
         {
@@ -31,8 +27,15 @@ namespace OrderPlatform.Controllers
         [HttpPost]
         public ActionResult Edit(OrderEditModel model) //this edit shows nothing but does the post//
         {
-            service.Post(model);
+            service.Set(model);
             return RedirectToAction("Index"); //redirects to another action of the same controller in this case, you can also redirect to another controller set apart//
+        }
+
+        [HttpGet]
+        public ActionResult Delete(int id)
+        {
+            service.del(id);
+            return RedirectToAction("Index");
         }
     }
 }

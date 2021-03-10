@@ -1,10 +1,10 @@
-﻿@model IEnumerable<OrderPlatform.Models.OrderIndexModel> 
+﻿@model IEnumerable<OrderPlatform.Models.OrderIndexModel>
 
 @{
-    ViewBag.Title = "Ordini";
+    ViewBag.Title = "Orders";
 }
 
-<h2>Ordini</h2>
+<h2>Orders</h2>
 
 <div>
     <a class="btn btn-primary" href="~/Order/Edit/0" role="button">Create new order</a>
@@ -20,7 +20,7 @@
             <th>@Html.DisplayNameFor(m => m.username)</th>
             <th>@Html.DisplayNameFor(m => m.state)</th>
             <th>Edit</th>
-            
+            <th>Delete</th>
         </tr>
     </thead>
     <tbody>
@@ -32,6 +32,7 @@
                 <td>@m.username</td>
                 <td>@m.state</td>
                 <td><a href="~/Order/Edit/@m.id">Edit</a></td>
+                <td><a href="~/Order/Delete/@m.id">Delete</a></td>
             </tr>
         }
     </tbody>

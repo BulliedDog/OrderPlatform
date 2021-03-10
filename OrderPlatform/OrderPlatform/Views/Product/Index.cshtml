@@ -1,0 +1,38 @@
+﻿@model IEnumerable<OrderPlatform.Models.ProductModel>
+
+@{
+    ViewBag.Title = "Products";
+}
+
+<h2>Products</h2>
+
+<div>
+    <a class="btn btn-warning" href="~/Product/Edit/0" role="button">Create new product</a>
+</div>
+
+<br />
+
+<table class="table table-bordered table-responsive table-condensed">
+    <thead>
+        <tr class="btn-warning">
+            <th>@Html.DisplayNameFor(m => m.id)</th> 
+            <th>@Html.DisplayNameFor(m => m.name)</th>
+            <th>@Html.DisplayNameFor(m => m.price)</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var m in Model)
+        {
+            <tr>
+                <td>@m.id</td>
+                <td>@m.name</td>
+                <td>@m.price</td>
+                <td><a href="~/Product/Edit/@m.id">Edit</a></td>
+                <td><a href="~/Product/Delete/@m.id">Delete</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+

@@ -9,6 +9,7 @@ namespace OrderPlatform.Controllers
         public OrderService service = new OrderService();
         public UserService userService = new UserService();
         public StateService stateService = new StateService();
+        public ProductOrderService productOrderService = new ProductOrderService();
         // GET: Order
 
         public ActionResult Index()
@@ -17,8 +18,9 @@ namespace OrderPlatform.Controllers
         }
 
         [HttpGet]
-        public ActionResult Edit(int id) //this edit shows the page but doesn't do any post//
+        public ActionResult Edit(int id, string message) //this edit shows the page but doesn't do any post//
         {
+            ViewBag.message = message;
             ViewBag.userList = userService.GetList(); //passes the list of names corresponding to the userId field//
             ViewBag.stateList = stateService.GetList(); //passes the list of states corresponding to the stateId field//
             return View(service.Get(id));
@@ -27,8 +29,14 @@ namespace OrderPlatform.Controllers
         [HttpPost]
         public ActionResult Edit(OrderEditModel model) //this edit shows nothing but does the post//
         {
-            service.Set(model);
-            return RedirectToAction("Index"); //redirects to another action of the same controller in this case, you can also redirect to another controller set apart//
+            ViewBag.userList = userService.GetList(); //passes the list of names corresponding to the userId field//
+            ViewBag.stateList = stateService.GetList(); //passes the list of states corresponding to the stateId field//
+            if (ModelState.IsValid)
+            {
+                var orderId = service.Set(model);
+                return RedirectToAction("Edit", new { id = orderId, message = "Order saved succesfully!!!" }); //redirects to another action of the same controller in this case, you can also redirect to another controller set apart//
+            }
+            return View(model);
         }
 
         [HttpGet]
@@ -36,6 +44,12 @@ namespace OrderPlatform.Controllers
         {
             service.del(id);
             return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public PartialViewResult newProduct(int orderId)
+        {
+            return PartialView("_ProductOrder", productOrderService.Get(orderId));
         }
     }
 }

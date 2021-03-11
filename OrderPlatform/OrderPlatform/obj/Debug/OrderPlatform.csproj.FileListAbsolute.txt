@@ -81,3 +81,4 @@ C:\Users\rovai6\source\repos\OrderPlatform\OrderPlatform\OrderPlatform\bin\Entit
 C:\Users\rovai6\source\repos\OrderPlatform\OrderPlatform\OrderPlatform\bin\EntityFramework.SqlServer.dll
 C:\Users\rovai6\source\repos\OrderPlatform\OrderPlatform\OrderPlatform\bin\EntityFramework.xml
 C:\Users\rovai6\source\repos\OrderPlatform\OrderPlatform\OrderPlatform\bin\EntityFramework.SqlServer.xml
+C:\Users\rovai6\source\repos\OrderPlatform\OrderPlatform\OrderPlatform\bin\BeginCollectionItem.dll

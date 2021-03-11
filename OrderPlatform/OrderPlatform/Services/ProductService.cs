@@ -23,5 +23,42 @@ namespace OrderPlatform.Services
                 };
             }
         }
+
+        public ProductModel Get(int id)
+        {
+            var model = new ProductModel();
+            if (id != 0)
+            {
+                var dbrow = db.Product.Find(id);
+                model.id = dbrow.Id;
+                model.name = dbrow.name;
+                model.price = dbrow.price;
+            }
+            return model;
+        }
+
+        public void Set(ProductModel model)
+        {
+            var dbrow = new Product();
+            if(model.id != 0)
+            {
+                dbrow = db.Product.Find(model.id);
+            }
+            dbrow.name = model.name;
+            dbrow.price = model.price;
+            if(model.id == 0)
+            {
+                db.Product.Add(dbrow);
+            }
+
+            db.SaveChanges();
+        }
+
+        public void del(int id)
+        {
+            db.Product.Remove(db.Product.Find(id));
+
+            db.SaveChanges();
+        }
     }
 }

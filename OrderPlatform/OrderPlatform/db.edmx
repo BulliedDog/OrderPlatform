@@ -18,7 +18,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
         </EntityType>
@@ -143,15 +143,6 @@
           <NavigationProperty Name="User" Relationship="Self.FK_Order_User" FromRole="Order" ToRole="User" />
           <NavigationProperty Name="ProductOrder" Relationship="Self.FK_ProductOrder_Order" FromRole="Order" ToRole="ProductOrder" />
         </EntityType>
-        <EntityType Name="Product">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="price" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-          <NavigationProperty Name="ProductOrder" Relationship="OrderPlatformDBModel.FK_ProductOrder_Product" FromRole="Product" ToRole="ProductOrder" />
-        </EntityType>
         <EntityType Name="ProductOrder">
           <Key>
             <PropertyRef Name="Id" />
@@ -226,7 +217,6 @@
         </Association>
         <EntityContainer Name="OrderPlatformDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Order" EntityType="Self.Order" />
-          <EntitySet Name="Product" EntityType="Self.Product" />
           <EntitySet Name="ProductOrder" EntityType="Self.ProductOrder" />
           <EntitySet Name="State" EntityType="Self.State" />
           <EntitySet Name="User" EntityType="Self.User" />
@@ -242,11 +232,21 @@
             <End Role="Order" EntitySet="Order" />
             <End Role="ProductOrder" EntitySet="ProductOrder" />
           </AssociationSet>
+          <EntitySet Name="Product" EntityType="OrderPlatformDBModel.Product" />
           <AssociationSet Name="FK_ProductOrder_Product" Association="OrderPlatformDBModel.FK_ProductOrder_Product">
             <End Role="Product" EntitySet="Product" />
             <End Role="ProductOrder" EntitySet="ProductOrder" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="price" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <NavigationProperty Name="ProductOrder" Relationship="OrderPlatformDBModel.FK_ProductOrder_Product" FromRole="Product" ToRole="ProductOrder" />
+        </EntityType>
         <Association Name="FK_ProductOrder_Product">
           <End Type="OrderPlatformDBModel.Product" Role="Product" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -277,15 +277,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Product">
-            <EntityTypeMapping TypeName="OrderPlatformDBModel.Product">
-              <MappingFragment StoreEntitySet="Product">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="price" ColumnName="price" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="ProductOrder">
             <EntityTypeMapping TypeName="OrderPlatformDBModel.ProductOrder">
               <MappingFragment StoreEntitySet="ProductOrder">
@@ -312,6 +303,15 @@
                 <ScalarProperty Name="username" ColumnName="username" />
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="able" ColumnName="able" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Product">
+            <EntityTypeMapping TypeName="OrderPlatformDBModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

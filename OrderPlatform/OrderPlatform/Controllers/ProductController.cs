@@ -19,20 +19,22 @@ namespace OrderPlatform.Controllers
         }
 
         [HttpGet]
-        public ActionResult Edit()
+        public ActionResult Edit(int id)
         {
-            return View();
+            return View(service.Get(id));
         }
 
         [HttpPost]
         public ActionResult Edit(ProductModel model)
         {
+            service.Set(model);
             return RedirectToAction("Index");
         }
 
         [HttpGet]
         public ActionResult Delete(int id)
         {
+            service.del(id);
             return RedirectToAction("Index");
         }
     }

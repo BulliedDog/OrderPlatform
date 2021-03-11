@@ -34,7 +34,9 @@ namespace OrderPlatform.Controllers
             if (ModelState.IsValid)
             {
                 var orderId = service.Set(model);
-                return RedirectToAction("Edit", new { id = orderId, message = "Order saved succesfully!!!" }); //redirects to another action of the same controller in this case, you can also redirect to another controller set apart//
+                //The RedirerectToAction() below directs to another action of the same controller in this case, though you can redirect to another controller set apart//
+                //It is also passing an anonymous object with the parameters needed for Edit()//
+                return RedirectToAction("Edit", new { id = orderId, message = "Order saved succesfully!!!" });
             }
             return View(model);
         }

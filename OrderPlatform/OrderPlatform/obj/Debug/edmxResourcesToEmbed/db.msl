@@ -4,39 +4,10 @@
     <EntitySetMapping Name="Order">
       <EntityTypeMapping TypeName="OrderPlatformDBModel.Order">
         <MappingFragment StoreEntitySet="Order">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="date" ColumnName="date" />
-          <ScalarProperty Name="userId" ColumnName="userId" />
           <ScalarProperty Name="stateId" ColumnName="stateId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="ProductOrder">
-      <EntityTypeMapping TypeName="OrderPlatformDBModel.ProductOrder">
-        <MappingFragment StoreEntitySet="ProductOrder">
-          <ScalarProperty Name="productId" ColumnName="productId" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="date" ColumnName="date" />
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="quantity" ColumnName="quantity" />
-          <ScalarProperty Name="total_price" ColumnName="total_price" />
-          <ScalarProperty Name="orderId" ColumnName="orderId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="State">
-      <EntityTypeMapping TypeName="OrderPlatformDBModel.State">
-        <MappingFragment StoreEntitySet="State">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="name" ColumnName="name" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="User">
-      <EntityTypeMapping TypeName="OrderPlatformDBModel.User">
-        <MappingFragment StoreEntitySet="User">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="username" ColumnName="username" />
-          <ScalarProperty Name="password" ColumnName="password" />
-          <ScalarProperty Name="able" ColumnName="able" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -45,6 +16,54 @@
         <MappingFragment StoreEntitySet="Product">
           <ScalarProperty Name="price" ColumnName="price" />
           <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductOrder">
+      <EntityTypeMapping TypeName="OrderPlatformDBModel.ProductOrder">
+        <MappingFragment StoreEntitySet="ProductOrder">
+          <ScalarProperty Name="productId" ColumnName="productId" />
+          <ScalarProperty Name="orderId" ColumnName="orderId" />
+          <ScalarProperty Name="total_price" ColumnName="total_price" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="State">
+      <EntityTypeMapping TypeName="OrderPlatformDBModel.State">
+        <MappingFragment StoreEntitySet="State">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User">
+      <EntityTypeMapping TypeName="OrderPlatformDBModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="able" ColumnName="able" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Warehouse">
+      <EntityTypeMapping TypeName="OrderPlatformDBModel.Warehouse">
+        <MappingFragment StoreEntitySet="Warehouse">
+          <ScalarProperty Name="location" ColumnName="location" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WarehouseProduct">
+      <EntityTypeMapping TypeName="OrderPlatformDBModel.WarehouseProduct">
+        <MappingFragment StoreEntitySet="WarehouseProduct">
+          <ScalarProperty Name="productId" ColumnName="productId" />
+          <ScalarProperty Name="warehouseId" ColumnName="warehouseId" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>

@@ -1,0 +1,46 @@
+﻿@model IEnumerable<OrderPlatform.Models.WarehouseModel>
+
+@{
+    ViewBag.Title = "Warehouses";
+}
+
+<h2>Warehouses</h2>
+
+<div>
+    <a class="btn btn-success" href="~/Warehouse/Edit/0" role="button">Create new warehouse</a>
+</div>
+
+<br />
+
+<table class="table table-bordered table-responsive table-condensed">
+    <thead>
+        <tr class="btn-success">
+            <th>
+                @Html.DisplayNameFor(model => model.name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.location)
+            </th>
+            <th>
+                Edit
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.location)
+                </td>
+                <td>
+                    <a href="~/Edit/0">content</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>

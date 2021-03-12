@@ -10,45 +10,66 @@
 {
     @Html.AntiForgeryToken()
 
-   <div class="form-horizontal">
-        <h4>OrderEditModel</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.id)
+<div class="form-horizontal">
+    <h4>OrderEditModel</h4>
+    <hr />
+    @if (ViewBag.Message != null)
+    {
+        <span class="text-success">@ViewBag.Message</span>
+    }
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.id)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.date, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.date, new { htmlAttributes = new { @class = "form-control" } } )
-                @Html.ValidationMessageFor(model => model.date, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @*//model.userId grabs the userId field but Displays the right name*@
-            @Html.LabelFor(model => model.userId, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @*//This is he dropdown list*@
-                @Html.DropDownListFor(model => model.userId, new SelectList(ViewBag.userList, "Value", "Text"), new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.userId, "", new { @class = "text-danger" })
-                @*//////////////////////////*@
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.stateId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(model => model.stateId, new SelectList(ViewBag.stateList, "Value", "Text"),  new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.stateId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.date, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.date, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.date, "", new { @class = "text-danger" })
         </div>
     </div>
+
+    <div class="form-group">
+        @*//model.userId grabs the userId field but Displays the right name*@
+        @Html.LabelFor(model => model.userId, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @*//This is he dropdown list*@
+            @Html.DropDownListFor(model => model.userId, new SelectList(ViewBag.userList, "Value", "Text"), new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.userId, "", new { @class = "text-danger" })
+            @*//////////////////////////*@
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.stateId, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.stateId, new SelectList(ViewBag.stateList, "Value", "Text"), new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.stateId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+
+    @if (Model.id != 0 || Model.orderProductList.Any())
+    {
+        @Html.ActionLink("Create new product", "newProduct", new { orderId = Model.id }, new { id = "newProduct", @class = "btn btn-danger" })
+        <table id="tablequalchecosa" class="table table-bordered table-responsive table-condensed">
+            <thead>
+            <th>Quantity</th>
+            <th>Product Id</th>
+            </thead>
+            <tbody>
+                @foreach (var m in Model.orderProductList)
+                {
+                    Html.RenderPartial("_ProductOrder", m);
+                }
+            </tbody>
+        </table>
+    }
+</div>
 }
 
 <div>
@@ -62,5 +83,15 @@
             changemonth: true,
             changeyear: true
         });
+    });
+
+    //chiama il controller per aggiungere un nuovo partialview e lo mette nell'ultimo tr
+    $("#newProduct").click(function () {
+        $.ajax({
+            url: this.href,
+            cache: false,
+            success: function (html) { $("#tablequalchecosa tr:last").after("<tr>" + html + "</tr>"); }
+        });
+        return false;
     });
 </script>

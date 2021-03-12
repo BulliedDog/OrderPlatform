@@ -7,6 +7,7 @@ namespace OrderPlatform.Services
     public class OrderService
     {
         public OrderPlatformDBEntities db = new OrderPlatformDBEntities();
+        public ProductOrderService productOrderService = new ProductOrderService();
 
         public IEnumerable<OrderIndexModel> Gets()
         {
@@ -25,6 +26,7 @@ namespace OrderPlatform.Services
 
         public OrderEditModel Get(int id)
         {
+            
             var model = new OrderEditModel();
             if (id != 0)
             {
@@ -34,11 +36,12 @@ namespace OrderPlatform.Services
                 model.date = dbrow.date;
                 model.userId = dbrow.userId;
                 model.stateId = dbrow.stateId;
+                model.orderProductList = productOrderService.Gets(model.id).ToList();
             }
             return model;
         }
 
-        public void Set(OrderEditModel model)
+        public int Set(OrderEditModel model)
         {
             var dbrow = new Order();
             if (model.id != 0)
@@ -56,6 +59,9 @@ namespace OrderPlatform.Services
             }
 
             db.SaveChanges();
+            productOrderService.Sets(model.orderProductList.ToList());
+            db.SaveChanges();
+            return dbrow.Id;
         }
 
         public void del(int id)

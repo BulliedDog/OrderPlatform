@@ -32,5 +32,7 @@ namespace OrderPlatform
         public virtual DbSet<User> User { get; set; }
         public virtual DbSet<Warehouse> Warehouse { get; set; }
         public virtual DbSet<WarehouseProduct> WarehouseProduct { get; set; }
+
+        public System.Data.Entity.DbSet<OrderPlatform.Models.WarehouseModel> WarehouseModels { get; set; }
     }
 }

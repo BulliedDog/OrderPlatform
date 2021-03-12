@@ -12,6 +12,7 @@ namespace OrderPlatform.Controllers
         public ProductOrderService productOrderService = new ProductOrderService();
         // GET: Order
 
+        [HttpGet]
         public ActionResult Index()
         {
             return View(service.Gets());

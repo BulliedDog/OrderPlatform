@@ -62,3 +62,4 @@ C:\Users\rovai6\source\repos\OrderPlatform\OrderPlatform\OrderPlatform\bin\rosly
 C:\Users\rovai6\source\repos\OrderPlatform\OrderPlatform\OrderPlatform\bin\roslyn\System.Memory.dll
 C:\Users\rovai6\source\repos\OrderPlatform\OrderPlatform\OrderPlatform\bin\roslyn\System.Numerics.Vectors.dll
 C:\Users\rovai6\source\repos\OrderPlatform\OrderPlatform\OrderPlatform\bin\roslyn\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\rovai6\source\repos\OrderPlatform\OrderPlatform\OrderPlatform\obj\Debug\OrderPlatform.csprojAssemblyReference.cache

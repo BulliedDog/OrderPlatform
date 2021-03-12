@@ -43,6 +43,23 @@
     <Property Name="password" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="able" Type="bit" Nullable="false" />
   </EntityType>
+  <EntityType Name="Warehouse">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="location" Type="nvarchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <EntityType Name="WarehouseProduct">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="quantity" Type="int" Nullable="false" />
+    <Property Name="warehouseId" Type="int" Nullable="false" />
+    <Property Name="productId" Type="int" Nullable="false" />
+  </EntityType>
   <Association Name="FK_Order_State">
     <End Role="State" Type="Self.State" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -99,12 +116,42 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_WarehouseProduct_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="WarehouseProduct" Type="Self.WarehouseProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="WarehouseProduct">
+        <PropertyRef Name="productId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WarehouseProduct_Warehouse">
+    <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="WarehouseProduct" Type="Self.WarehouseProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Warehouse">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="WarehouseProduct">
+        <PropertyRef Name="warehouseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="OrderPlatformDBModelStoreContainer">
     <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProductOrder" EntityType="Self.ProductOrder" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="State" EntityType="Self.State" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Warehouse" EntityType="Self.Warehouse" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WarehouseProduct" EntityType="Self.WarehouseProduct" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_Order_State" Association="Self.FK_Order_State">
       <End Role="State" EntitySet="State" />
       <End Role="Order" EntitySet="Order" />
@@ -120,6 +167,14 @@
     <AssociationSet Name="FK_ProductOrder_Product" Association="Self.FK_ProductOrder_Product">
       <End Role="Product" EntitySet="Product" />
       <End Role="ProductOrder" EntitySet="ProductOrder" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WarehouseProduct_Product" Association="Self.FK_WarehouseProduct_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="WarehouseProduct" EntitySet="WarehouseProduct" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WarehouseProduct_Warehouse" Association="Self.FK_WarehouseProduct_Warehouse">
+      <End Role="Warehouse" EntitySet="Warehouse" />
+      <End Role="WarehouseProduct" EntitySet="WarehouseProduct" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

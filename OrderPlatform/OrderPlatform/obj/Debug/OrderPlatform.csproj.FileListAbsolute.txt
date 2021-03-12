@@ -72,7 +72,6 @@ C:\Users\rovai6\source\repos\OrderPlatform\OrderPlatform\OrderPlatform\bin\Syste
 C:\Users\rovai6\source\repos\OrderPlatform\OrderPlatform\OrderPlatform\bin\Newtonsoft.Json.xml
 C:\Users\rovai6\source\repos\OrderPlatform\OrderPlatform\OrderPlatform\bin\Antlr3.Runtime.pdb
 C:\Users\rovai6\source\repos\OrderPlatform\OrderPlatform\OrderPlatform\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\rovai6\source\repos\OrderPlatform\OrderPlatform\OrderPlatform\obj\Debug\OrderPlatform.csprojAssemblyReference.cache
 C:\Users\rovai6\source\repos\OrderPlatform\OrderPlatform\OrderPlatform\obj\Debug\OrderPlatform.csproj.CoreCompileInputs.cache
 C:\Users\rovai6\source\repos\OrderPlatform\OrderPlatform\OrderPlatform\obj\Debug\OrderPlatform.csproj.CopyComplete
 C:\Users\rovai6\source\repos\OrderPlatform\OrderPlatform\OrderPlatform\obj\Debug\OrderPlatform.dll

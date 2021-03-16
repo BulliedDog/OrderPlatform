@@ -11,6 +11,7 @@ namespace OrderPlatform.Controllers
     public class WarehouseController : Controller
     {
         public WarehouseService warehouseService = new WarehouseService();
+        public WarehouseProductService warehouseProductService = new WarehouseProductService();
 
         [HttpGet]
         public ActionResult Index()
@@ -23,11 +24,25 @@ namespace OrderPlatform.Controllers
         {
             return View(warehouseService.Get(id));
         }
+
         [HttpPost]
         public ActionResult Edit(WarehouseModel model)
         {
             warehouseService.Set(model);
             return RedirectToAction("Index");
+        }
+        
+        [HttpGet]
+        public ActionResult Delete(int id)
+        {
+            warehouseService.Del(id);
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public PartialViewResult newWarehouseProduct(int warehouseId)
+        {
+            return PartialView("_WarehouseProduct", warehouseProductService.Get(warehouseId));
         }
     }
 }

@@ -3,7 +3,6 @@
   <EntityContainer Name="OrderPlatformDBEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Order" EntityType="OrderPlatformDBModel.Order" />
     <EntitySet Name="Product" EntityType="OrderPlatformDBModel.Product" />
-    <EntitySet Name="ProductOrder" EntityType="OrderPlatformDBModel.ProductOrder" />
     <EntitySet Name="State" EntityType="OrderPlatformDBModel.State" />
     <EntitySet Name="User" EntityType="OrderPlatformDBModel.User" />
     <EntitySet Name="Warehouse" EntityType="OrderPlatformDBModel.Warehouse" />
@@ -16,14 +15,6 @@
       <End Role="User" EntitySet="User" />
       <End Role="Order" EntitySet="Order" />
     </AssociationSet>
-    <AssociationSet Name="FK_ProductOrder_Order" Association="OrderPlatformDBModel.FK_ProductOrder_Order">
-      <End Role="Order" EntitySet="Order" />
-      <End Role="ProductOrder" EntitySet="ProductOrder" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ProductOrder_Product" Association="OrderPlatformDBModel.FK_ProductOrder_Product">
-      <End Role="Product" EntitySet="Product" />
-      <End Role="ProductOrder" EntitySet="ProductOrder" />
-    </AssociationSet>
     <AssociationSet Name="FK_WarehouseProduct_Product" Association="OrderPlatformDBModel.FK_WarehouseProduct_Product">
       <End Role="Product" EntitySet="Product" />
       <End Role="WarehouseProduct" EntitySet="WarehouseProduct" />
@@ -31,6 +22,15 @@
     <AssociationSet Name="FK_WarehouseProduct_Warehouse" Association="OrderPlatformDBModel.FK_WarehouseProduct_Warehouse">
       <End Role="Warehouse" EntitySet="Warehouse" />
       <End Role="WarehouseProduct" EntitySet="WarehouseProduct" />
+    </AssociationSet>
+    <EntitySet Name="ProductOrder" EntityType="OrderPlatformDBModel.ProductOrder" />
+    <AssociationSet Name="FK_ProductOrder_Order" Association="OrderPlatformDBModel.FK_ProductOrder_Order">
+      <End Role="Order" EntitySet="Order" />
+      <End Role="ProductOrder" EntitySet="ProductOrder" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductOrder_Product" Association="OrderPlatformDBModel.FK_ProductOrder_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="ProductOrder" EntitySet="ProductOrder" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Order">
@@ -52,20 +52,8 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="price" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-    <NavigationProperty Name="ProductOrder" Relationship="OrderPlatformDBModel.FK_ProductOrder_Product" FromRole="Product" ToRole="ProductOrder" />
     <NavigationProperty Name="WarehouseProduct" Relationship="OrderPlatformDBModel.FK_WarehouseProduct_Product" FromRole="Product" ToRole="WarehouseProduct" />
-  </EntityType>
-  <EntityType Name="ProductOrder">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" />
-    <Property Name="quantity" Type="Int32" Nullable="false" />
-    <Property Name="total_price" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-    <Property Name="orderId" Type="Int32" Nullable="false" />
-    <Property Name="productId" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Order" Relationship="OrderPlatformDBModel.FK_ProductOrder_Order" FromRole="ProductOrder" ToRole="Order" />
-    <NavigationProperty Name="Product" Relationship="OrderPlatformDBModel.FK_ProductOrder_Product" FromRole="ProductOrder" ToRole="Product" />
+    <NavigationProperty Name="ProductOrder" Relationship="OrderPlatformDBModel.FK_ProductOrder_Product" FromRole="Product" ToRole="ProductOrder" />
   </EntityType>
   <EntityType Name="State">
     <Key>
@@ -133,34 +121,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_ProductOrder_Order">
-    <End Type="OrderPlatformDBModel.Order" Role="Order" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Type="OrderPlatformDBModel.ProductOrder" Role="ProductOrder" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Order">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="ProductOrder">
-        <PropertyRef Name="orderId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ProductOrder_Product">
-    <End Type="OrderPlatformDBModel.Product" Role="Product" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Type="OrderPlatformDBModel.ProductOrder" Role="ProductOrder" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Product">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="ProductOrder">
-        <PropertyRef Name="productId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_WarehouseProduct_Product">
     <End Type="OrderPlatformDBModel.Product" Role="Product" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -186,6 +146,46 @@
       </Principal>
       <Dependent Role="WarehouseProduct">
         <PropertyRef Name="warehouseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="ProductOrder">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="quantity" Type="Int32" Nullable="false" />
+    <Property Name="total_price" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="orderId" Type="Int32" Nullable="false" />
+    <Property Name="productId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Order" Relationship="OrderPlatformDBModel.FK_ProductOrder_Order" FromRole="ProductOrder" ToRole="Order" />
+    <NavigationProperty Name="Product" Relationship="OrderPlatformDBModel.FK_ProductOrder_Product" FromRole="ProductOrder" ToRole="Product" />
+  </EntityType>
+  <Association Name="FK_ProductOrder_Order">
+    <End Type="OrderPlatformDBModel.Order" Role="Order" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="OrderPlatformDBModel.ProductOrder" Role="ProductOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductOrder">
+        <PropertyRef Name="orderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductOrder_Product">
+    <End Type="OrderPlatformDBModel.Product" Role="Product" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="OrderPlatformDBModel.ProductOrder" Role="ProductOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductOrder">
+        <PropertyRef Name="productId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

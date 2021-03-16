@@ -21,7 +21,7 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="quantity" Type="int" Nullable="false" />
     <Property Name="total_price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
     <Property Name="orderId" Type="int" Nullable="false" />

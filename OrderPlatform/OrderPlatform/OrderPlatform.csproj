@@ -160,6 +160,7 @@
     <Compile Include="Models\StateModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\WarehouseModel.cs" />
+    <Compile Include="Models\WarehouseProductModel.cs" />
     <Compile Include="Order.cs">
       <DependentUpon>db.tt</DependentUpon>
     </Compile>
@@ -175,6 +176,7 @@
     <Compile Include="Services\ProductService.cs" />
     <Compile Include="Services\StateService.cs" />
     <Compile Include="Services\UserService.cs" />
+    <Compile Include="Services\WarehouseProductService.cs" />
     <Compile Include="Services\WarehouseService.cs" />
     <Compile Include="State.cs">
       <DependentUpon>db.tt</DependentUpon>
@@ -394,6 +396,8 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Warehouse\Index.cshtml" />
+    <Content Include="Views\Warehouse\Edit.cshtml" />
+    <Content Include="Views\Warehouse\_WarehouseProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

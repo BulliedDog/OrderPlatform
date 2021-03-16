@@ -1,15 +1,18 @@
 ﻿@model OrderPlatform.Models.ProductOrderModel
 
-@using (Html.BeginCollectionItem("ProductOrder")) 
+@using (Html.BeginCollectionItem("orderProductList"))
 { 
 <tr>
     <td>
         @Html.HiddenFor(model => model.id)
         @Html.HiddenFor(model => model.orderId)
-        @Html.EditorFor(model => model.quantity)
+        @Html.EditorFor(model => model.quantity, new { @class = "control-label col-md-2" })
     </td>
     <td>
-        @Html.EditorFor(model => model.productId)
+        @Html.DropDownListFor(model => model.productId, new SelectList(ViewBag.productList, "Value", "Text"), new { @class = "control-label col-md-6" })
+    </td>
+    <td>
+        <a href="~/Order/DeleteProductOrder/@Model.id" onclick="return confirm('Are you sure you want to delete this record?')">Delete</a>
     </td>
 </tr>
 }

@@ -9,6 +9,7 @@ namespace OrderPlatform.Services
     public class WarehouseService
     {
         public OrderPlatformDBEntities db = new OrderPlatformDBEntities();
+        public WarehouseProductService warehouseProductService = new WarehouseProductService();
 
         public IEnumerable<WarehouseModel> Gets()
         {
@@ -19,7 +20,8 @@ namespace OrderPlatform.Services
                 {
                     id = dbrow.Id,
                     name = dbrow.name,
-                    location = dbrow.location
+                    location = dbrow.location,
+                    
                 };
             }
         }
@@ -33,6 +35,7 @@ namespace OrderPlatform.Services
                 model.id = dbrow.Id;
                 model.name = dbrow.name;
                 model.location = dbrow.location;
+                model.warehouseProductList = warehouseProductService.Gets(model.id);
             }
             return model;
         }
@@ -51,6 +54,13 @@ namespace OrderPlatform.Services
             {
                 db.Warehouse.Add(dbrow);
             }
+            db.SaveChanges();
+        }
+
+        public void Del(int id)
+        {
+            var dbrow = db.Warehouse.Find(id);
+            db.Warehouse.Remove(dbrow);
             db.SaveChanges();
         }
     }

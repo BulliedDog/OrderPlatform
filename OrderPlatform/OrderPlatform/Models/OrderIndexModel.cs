@@ -4,7 +4,7 @@ namespace OrderPlatform.Models
 {
     public class OrderIndexModel
     {
-        [DisplayName("Order number")]
+        [DisplayName("Id")]
         public int id { get; set; }
 
         [DisplayName("Date")]

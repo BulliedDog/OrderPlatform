@@ -17,8 +17,8 @@ namespace OrderPlatform
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Product()
         {
-            this.ProductOrder = new HashSet<ProductOrder>();
             this.WarehouseProduct = new HashSet<WarehouseProduct>();
+            this.ProductOrder = new HashSet<ProductOrder>();
         }
     
         public int Id { get; set; }
@@ -26,8 +26,8 @@ namespace OrderPlatform
         public decimal price { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProductOrder> ProductOrder { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<WarehouseProduct> WarehouseProduct { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProductOrder> ProductOrder { get; set; }
     }
 }

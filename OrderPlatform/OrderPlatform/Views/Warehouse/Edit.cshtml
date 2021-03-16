@@ -1,0 +1,84 @@
+﻿@model OrderPlatform.Models.WarehouseModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>WarehouseModel</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.id, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <label class="control-label col-md-2">@Model.id</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.location, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.location, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.location, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+
+    if (Model.id != 0 || Model.warehouseProductList.Any())
+    {
+        @Html.ActionLink("Create new product", "newWarehouseProduct", new { warehouseId = Model.id }, new { id = "newWarehouseProduct", @class = "btn btn-warning" })
+        <br />
+        <br />
+        <table id="tablequalchecosa" class="table table-bordered table-responsive table-condensed">
+            <thead>
+            <th>Quantity</th>
+            <th>Product</th>
+            <th>Delete</th>
+            </thead>
+            <tbody>
+                @foreach (var m in Model.warehouseProductList)
+                {
+                    Html.RenderPartial("_WarehouseProduct", m);
+                }
+            </tbody>
+        </table>
+    }
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+<script>
+    //chiama il controller per aggiungere un nuovo partialview e lo mette nell'ultimo tr
+    $("#newWarehouseProduct").click(function () {
+        $.ajax({
+            url: this.href,
+            cache: false,
+            success: function (html) { $("#tablequalchecosa tr:last").after("<tr>" + html + "</tr>"); }
+        });
+        return false;
+    });
+</script>

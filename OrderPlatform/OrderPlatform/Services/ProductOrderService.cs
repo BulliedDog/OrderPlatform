@@ -57,5 +57,13 @@ namespace OrderPlatform.Services
                 orderId = orderId
             };
         }
+
+        public int Del(int id)
+        {
+            var dbrow = db.ProductOrder.Find(id);
+            db.ProductOrder.Remove(dbrow);
+            db.SaveChanges();
+            return dbrow.orderId;
+        }
     }
 }

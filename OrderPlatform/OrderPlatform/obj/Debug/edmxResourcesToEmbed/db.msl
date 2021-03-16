@@ -20,17 +20,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="ProductOrder">
-      <EntityTypeMapping TypeName="OrderPlatformDBModel.ProductOrder">
-        <MappingFragment StoreEntitySet="ProductOrder">
-          <ScalarProperty Name="productId" ColumnName="productId" />
-          <ScalarProperty Name="orderId" ColumnName="orderId" />
-          <ScalarProperty Name="total_price" ColumnName="total_price" />
-          <ScalarProperty Name="quantity" ColumnName="quantity" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="State">
       <EntityTypeMapping TypeName="OrderPlatformDBModel.State">
         <MappingFragment StoreEntitySet="State">
@@ -63,6 +52,17 @@
         <MappingFragment StoreEntitySet="WarehouseProduct">
           <ScalarProperty Name="productId" ColumnName="productId" />
           <ScalarProperty Name="warehouseId" ColumnName="warehouseId" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductOrder">
+      <EntityTypeMapping TypeName="OrderPlatformDBModel.ProductOrder">
+        <MappingFragment StoreEntitySet="ProductOrder">
+          <ScalarProperty Name="productId" ColumnName="productId" />
+          <ScalarProperty Name="orderId" ColumnName="orderId" />
+          <ScalarProperty Name="total_price" ColumnName="total_price" />
           <ScalarProperty Name="quantity" ColumnName="quantity" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>

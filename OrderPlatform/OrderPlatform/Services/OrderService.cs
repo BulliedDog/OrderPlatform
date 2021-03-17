@@ -36,7 +36,7 @@ namespace OrderPlatform.Services
                 model.date = dbrow.date;
                 model.userId = dbrow.userId;
                 model.stateId = dbrow.stateId;
-                model.orderProductList = productOrderService.Gets(model.id).ToList();
+                model.orderProductList = productOrderService.Gets(model.id).ToList(); //This tolist() method makes it so that the IEnumerable doesn't return a null value if the db is empty//
             }
             return model;
         }

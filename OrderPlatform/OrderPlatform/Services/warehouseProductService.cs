@@ -12,7 +12,7 @@ namespace OrderPlatform.Services
 
         public IEnumerable<WarehouseProductModel> Gets(int warehouseId)
         {
-            var dbrows = db.WarehouseProduct.OrderBy(x => x.warehouseId == warehouseId).OrderBy(x => x.Id);
+            var dbrows = db.WarehouseProduct.Where(x => x.warehouseId == warehouseId).OrderBy(x => x.Id);
             foreach (var dbrow in dbrows)
             {
                 yield return new WarehouseProductModel()
@@ -32,6 +32,18 @@ namespace OrderPlatform.Services
                 quantity = 1,
                 warehouseId = warehouseId
             };
+        }
+
+        public void Sets(List<WarehouseProductModel> list)
+        {
+            var dbrow = new WarehouseProduct();
+            foreach(var model in list)
+            {
+                dbrow.quantity = model.quantity;
+                dbrow.warehouseId = model.warehouseId;
+                dbrow.productId = model.productId;
+                db.WarehouseProduct.Add(dbrow);
+            }
         }
     }
 }

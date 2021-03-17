@@ -1,9 +1,5 @@
 ﻿using OrderPlatform.Models;
 using OrderPlatform.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace OrderPlatform.Controllers
@@ -28,8 +24,7 @@ namespace OrderPlatform.Controllers
         [HttpPost]
         public ActionResult Edit(WarehouseModel model)
         {
-            warehouseService.Set(model);
-            return RedirectToAction("Index");
+            return RedirectToAction("Edit", new { id = warehouseService.Set(model) });
         }
         
         [HttpGet]

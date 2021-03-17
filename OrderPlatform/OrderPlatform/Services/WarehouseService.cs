@@ -1,8 +1,6 @@
 ﻿using OrderPlatform.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace OrderPlatform.Services
 {
@@ -21,7 +19,6 @@ namespace OrderPlatform.Services
                     id = dbrow.Id,
                     name = dbrow.name,
                     location = dbrow.location,
-                    
                 };
             }
         }
@@ -35,12 +32,12 @@ namespace OrderPlatform.Services
                 model.id = dbrow.Id;
                 model.name = dbrow.name;
                 model.location = dbrow.location;
-                model.warehouseProductList = warehouseProductService.Gets(model.id);
+                model.warehouseProductList = warehouseProductService.Gets(model.id).ToList();
             }
             return model;
         }
 
-        public void Set(WarehouseModel model)
+        public int Set(WarehouseModel model)
         {
             var dbrow = new Warehouse();
             if (model.id != 0)
@@ -55,6 +52,9 @@ namespace OrderPlatform.Services
                 db.Warehouse.Add(dbrow);
             }
             db.SaveChanges();
+            warehouseProductService.Sets(model.warehouseProductList.ToList());
+            db.SaveChanges();
+            return dbrow.Id;
         }
 
         public void Del(int id)

@@ -49,7 +49,7 @@
                     <a href="~/Warehouse/Edit/@item.id">Edit</a>
                 </td>
                 <td>
-                    <a href="~/Warehouse/Delete/@item.id">Delete</a>
+                    <a href="~/Warehouse/Delete/@item.id" onclick="return confirm('Are you sure you want to delete this record?')">Delete</a>
                 </td>
             </tr>
         }

@@ -30,7 +30,7 @@
                 <td>@m.name</td>
                 <td>@m.price €</td>
                 <td><a href="~/Product/Edit/@m.id">Edit</a></td>
-                <td><a href="~/Product/Delete/@m.id">Delete</a></td>
+                <td><a href="~/Product/Delete/@m.id" onclick="return confirm('Are you sure you want to delete this record?')">Delete</a></td>
             </tr>
         }
     </tbody>

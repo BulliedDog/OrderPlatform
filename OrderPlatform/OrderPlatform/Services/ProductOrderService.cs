@@ -35,7 +35,7 @@ namespace OrderPlatform.Services
                 }
 
                 dbrow.quantity = model.quantity;
-                dbrow.total_price = model.total_price;
+                dbrow.total_price = model.quantity * db.Product.Find(model.productId).price;
                 dbrow.orderId = model.orderId;
                 dbrow.productId = model.productId;
 
@@ -43,6 +43,7 @@ namespace OrderPlatform.Services
                 {
                     db.ProductOrder.Add(dbrow);
                 }
+                db.SaveChanges();
             }
         }
 

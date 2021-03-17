@@ -28,7 +28,7 @@
                 <td>@m.id</td>
                 <td>@m.name</td>
                 <td><a href="~/State/Edit/@m.id">Edit</a></td>
-                <td><a href="~/State/Delete/@m.id">Delete</a></td>
+                <td><a href="~/State/Delete/@m.id" onclick="return confirm('Are you sure you want to delete this record?')">Delete</a></td>
             </tr>
         }
     </tbody>

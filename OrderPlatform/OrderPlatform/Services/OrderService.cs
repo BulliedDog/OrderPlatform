@@ -26,7 +26,6 @@ namespace OrderPlatform.Services
 
         public OrderEditModel Get(int id)
         {
-            
             var model = new OrderEditModel();
             if (id != 0)
             {

@@ -1,8 +1,7 @@
 ﻿using OrderPlatform.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Web.Mvc;
 
 namespace OrderPlatform.Services
 {
@@ -36,14 +35,46 @@ namespace OrderPlatform.Services
 
         public void Sets(List<WarehouseProductModel> list)
         {
-            var dbrow = new WarehouseProduct();
-            foreach(var model in list)
+            foreach (var model in list)
             {
+                var dbrow = new WarehouseProduct();
+                if (model.id != 0)
+                {
+                    dbrow = db.WarehouseProduct.Find(model.id);
+                }
+
                 dbrow.quantity = model.quantity;
                 dbrow.warehouseId = model.warehouseId;
                 dbrow.productId = model.productId;
-                db.WarehouseProduct.Add(dbrow);
+
+                if (model.id == 0)
+                {
+                    db.WarehouseProduct.Add(dbrow);
+                }
+                db.SaveChanges();
             }
+        }
+
+        public SelectList GetList()
+        {
+            var dbrows = db.Product.OrderBy(x => x.Id);
+            var list = new List<SelectListItem>();
+            foreach(var dbrow in dbrows)
+            {
+                list.Add(new SelectListItem()
+                {
+                    Value = dbrow.Id.ToString(),
+                    Text = dbrow.name
+                });
+            }
+            return new SelectList(list, "Value", "Text");
+        }
+
+        public int Del(int id)
+        {
+            db.WarehouseProduct.Remove(db.WarehouseProduct.Find(id));
+            db.SaveChanges();
+            return id;
         }
     }
 }

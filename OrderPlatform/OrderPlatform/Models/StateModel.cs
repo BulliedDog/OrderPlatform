@@ -6,6 +6,7 @@ namespace OrderPlatform.Models
     {
         [DisplayName("Id")]
         public int id { get; set; }
+
         [DisplayName("Name")]
         public string name { get; set; }
     }

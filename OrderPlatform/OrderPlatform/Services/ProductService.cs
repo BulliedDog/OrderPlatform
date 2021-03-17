@@ -12,7 +12,7 @@ namespace OrderPlatform.Services
         public IEnumerable<ProductModel> Gets()
         {
             var dbrows = db.Product.OrderBy(x => x.Id);
-            foreach(var dbrow in dbrows)
+            foreach (var dbrow in dbrows)
             {
                 yield return new ProductModel()
                 {
@@ -39,13 +39,13 @@ namespace OrderPlatform.Services
         public void Set(ProductModel model)
         {
             var dbrow = new Product();
-            if(model.id != 0)
+            if (model.id != 0)
             {
                 dbrow = db.Product.Find(model.id);
             }
             dbrow.name = model.name;
             dbrow.price = model.price;
-            if(model.id == 0)
+            if (model.id == 0)
             {
                 db.Product.Add(dbrow);
             }
@@ -64,7 +64,7 @@ namespace OrderPlatform.Services
         {
             var dbrows = db.Product.OrderBy(x => x.Id);
             var list = new List<SelectListItem>();
-            foreach(var dbrow in dbrows)
+            foreach (var dbrow in dbrows)
             {
                 list.Add(new SelectListItem()
                 {

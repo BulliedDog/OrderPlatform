@@ -1,5 +1,7 @@
 ﻿using OrderPlatform.Models;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Validation;
 using System.Linq;
 
 namespace OrderPlatform.Services
@@ -57,11 +59,12 @@ namespace OrderPlatform.Services
             return dbrow.Id;
         }
 
-        public void Del(int id)
+        public int Del(int id)
         {
             var dbrow = db.Warehouse.Find(id);
             db.Warehouse.Remove(dbrow);
             db.SaveChanges();
+            return id;
         }
     }
 }

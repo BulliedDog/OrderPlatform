@@ -1,14 +1,13 @@
 ﻿using OrderPlatform.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace OrderPlatform.Services
 {
     public class ProductOrderService
     {
         public OrderPlatformDBEntities db = new OrderPlatformDBEntities();
+
         public IEnumerable<ProductOrderModel> Gets(int orderid) ////////////////
         {
             var dbrows = db.ProductOrder.Where(x => x.orderId == orderid).OrderBy(x => x.Id);
@@ -44,8 +43,6 @@ namespace OrderPlatform.Services
                 {
                     db.ProductOrder.Add(dbrow);
                 }
-
-                db.SaveChanges();
             }
         }
 

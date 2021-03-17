@@ -16,9 +16,11 @@ namespace OrderPlatform.Models
         [Required]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")] //this is the format that will be shown
         public DateTime date { get; set; }
+
         [Required]
         [DisplayName("User Name")]
         public int userId { get; set; }
+
         [Required]
         [DisplayName("State")]
         public int stateId { get; set; }
@@ -28,6 +30,5 @@ namespace OrderPlatform.Models
             date = DateTime.Now;
             orderProductList = new List<ProductOrderModel>();
         }
-
     }
 }

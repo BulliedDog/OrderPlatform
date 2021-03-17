@@ -46,13 +46,15 @@
         </div>
     </div>
 
+    <hr />
+
     if (Model.id != 0 || Model.warehouseProductList.Any())
     {
         @Html.ActionLink("Create new product", "newWarehouseProduct", new { warehouseId = Model.id }, new { id = "newWarehouseProduct", @class = "btn btn-warning" })
         <br />
         <br />
         <table id="tablequalchecosa" class="table table-bordered table-responsive table-condensed">
-            <thead>
+            <thead class="btn-warning">
                 <th>Quantity</th>
                 <th>Product</th>
                 <th>Delete</th>

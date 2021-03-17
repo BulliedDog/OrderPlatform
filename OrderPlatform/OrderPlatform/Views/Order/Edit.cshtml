@@ -60,13 +60,15 @@
         </div>
     </div>
 
+    <hr />
+
     @if (Model.id != 0 || Model.orderProductList.Any())
     {
         @Html.ActionLink("Create new product", "newProduct", new { orderId = Model.id }, new { id = "newProduct", @class = "btn btn-warning" })
         <br />
         <br />
         <table id="tablequalchecosa" class="table table-bordered table-responsive table-condensed">
-            <thead>
+            <thead class="btn-warning">
                 <th>Quantity</th>
                 <th>Total Price</th>
                 <th>Product</th>

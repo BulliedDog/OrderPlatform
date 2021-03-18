@@ -6,6 +6,9 @@
 
 <h2>Orders</h2>
 
+<div id="chartContainer" style="height: 370px; width: 100%;"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
 <div>
     <a class="btn btn-primary" href="~/Order/Edit/0" role="button">Create new order</a>
 </div>
@@ -37,3 +40,30 @@
         }
     </tbody>
 </table>
+
+<script>
+    window.onload = function () {
+
+        var chart = new CanvasJS.Chart("chartContainer", {
+            animationEnabled: true,
+            title: {
+                text: "Database Data"
+            },
+            data: [{
+                type: "pie",
+                startAngle: 240,
+                yValueFormatString: "##0.00\"%\"",
+                indexLabel: "{label} {y}",
+                dataPoints: [
+                    { y: 79.45, label: "Orders", color: "#0275d8" },
+                    { y: 7.31, label: "Products", color: "#f0ad4e" },
+                    { y: 7.06, label: "States", color: "#d9534f" },
+                    { y: 4.91, label: "Warehouses", color: "#5cb85c" },
+                    { y: 1.26, label: "Users", color: "#5bc0de" }
+                ]
+            }]
+        });
+        chart.render();
+
+    }
+</script>

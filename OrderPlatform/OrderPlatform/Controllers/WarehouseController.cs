@@ -1,5 +1,6 @@
 ﻿using OrderPlatform.Models;
 using OrderPlatform.Services;
+using System;
 using System.Web.Mvc;
 
 namespace OrderPlatform.Controllers
@@ -43,9 +44,17 @@ namespace OrderPlatform.Controllers
         }
 
         [HttpGet]
-        public ActionResult DeleteWarehouseProduct(int warehouseProductId)
+        public string DeleteWarehouseProduct(int id)
         {
-            return View("Edit", new { id = warehouseProductService.Del(warehouseProductId) });
+            try
+            {
+                warehouseProductService.Del(id);
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+            return "";
         }
     }
 }

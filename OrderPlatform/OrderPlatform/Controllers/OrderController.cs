@@ -1,5 +1,6 @@
 ﻿using OrderPlatform.Models;
 using OrderPlatform.Services;
+using System;
 using System.Web.Mvc;
 
 namespace OrderPlatform.Controllers
@@ -13,9 +14,17 @@ namespace OrderPlatform.Controllers
         public ProductOrderService productOrderService = new ProductOrderService();
         // GET: Order
 
-        [HttpGet]
-        public ActionResult Index()
+        public ActionResult Index(string firstDate, string lastDate)
         {
+            ViewBag.firstDate = string.Empty;
+            ViewBag.lastDate = string.Empty;
+            if (firstDate != null || lastDate != null)
+            {
+                ViewBag.firstDate = firstDate;
+                ViewBag.lastDate = lastDate;
+                ViewBag.quantitiesList = service.GetQuantities();
+                return View(service.Gets(firstDate, lastDate));
+            }
             ViewBag.quantitiesList = service.GetQuantities();
             return View(service.Gets());
         }
@@ -36,13 +45,13 @@ namespace OrderPlatform.Controllers
             ViewBag.userList = userService.GetList(); //passes the list of names corresponding to the userId field//
             ViewBag.stateList = stateService.GetList(); //passes the list of states corresponding to the stateId field//
             ViewBag.productList = productService.GetList();
-            if (ModelState.IsValid) //this if is for the validation//
-            {
+            //if (ModelState.IsValid) //this if is for the validation//
+            //{
                 var orderId = service.Set(model); //service.Set saves the order model but it returns an int value that is model.orderId(go to definition of Set to check it out)//
                 //The RedirerectToAction() below directs to another action of the same controller in this case, though you can redirect to another controller set apart//
                 //It is also passing an anonymous object with the parameters needed for Edit()//
                 return RedirectToAction("Edit", new { id = orderId, message = "Order saved succesfully!!!" });
-            }
+            //}
             return View(model); //returning the model with the same view trigers the validation messages//
         }
 

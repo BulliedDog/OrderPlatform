@@ -25,6 +25,23 @@ namespace OrderPlatform.Services
             }
         }
 
+        public IEnumerable<OrderIndexModel> Gets(string fd, string ld)
+        {
+            DateTime firstDate = Convert.ToDateTime(fd);
+            DateTime lastDate = Convert.ToDateTime(ld);
+            var dbrows = db.Order.Where(x => x.date <= firstDate && x.date >= lastDate);
+            foreach (var dbrow in dbrows)
+            {
+                yield return new OrderIndexModel()
+                {
+                    id = dbrow.Id,
+                    username = dbrow.User.username,
+                    state = dbrow.State.name,
+                    date = dbrow.date.ToShortDateString(),
+                };
+            }
+        }
+
         public OrderEditModel Get(int id)
         {
             var model = new OrderEditModel();
@@ -84,5 +101,6 @@ namespace OrderPlatform.Services
             };
             return list;
         }
+
     }
 }

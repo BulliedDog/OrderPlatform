@@ -55,11 +55,11 @@
                 yValueFormatString: "##0.00\"%\"",
                 indexLabel: "{label} {y}",
                 dataPoints: [
-                    { y: 79.45, label: "Orders", color: "#0275d8" },
-                    { y: 7.31, label: "Products", color: "#f0ad4e" },
-                    { y: 7.06, label: "States", color: "#d9534f" },
-                    { y: 4.91, label: "Warehouses", color: "#5cb85c" },
-                    { y: 1.26, label: "Users", color: "#5bc0de" }
+                    { y: @ViewBag.quantitiesList[0], label: "Orders", color: "#0275d8" },
+                    { y: @ViewBag.quantitiesList[3], label: "Products", color: "#f0ad4e" },
+                    { y: @ViewBag.quantitiesList[2], label: "States", color: "#d9534f" },
+                    { y: @ViewBag.quantitiesList[4], label: "Warehouses", color: "#5cb85c" },
+                    { y: @ViewBag.quantitiesList[1], label: "Users", color: "#5bc0de" }
                 ]
             }]
         });

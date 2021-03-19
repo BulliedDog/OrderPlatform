@@ -1,4 +1,5 @@
 ﻿using OrderPlatform.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -68,6 +69,20 @@ namespace OrderPlatform.Services
             db.Order.Remove(db.Order.Find(id));
 
             db.SaveChanges();
+        }
+
+        public List<decimal> GetQuantities()
+        {
+            var total = db.Order.Count() + db.User.Count() + db.State.Count() + db.Product.Count() + db.Warehouse.Count();
+            var list = new List<decimal>()
+            {
+                decimal.Round(Convert.ToDecimal(db.Order.Count()) / total * 100, 2),
+                decimal.Round(Convert.ToDecimal(db.User.Count()) / total * 100, 2),
+                decimal.Round(Convert.ToDecimal(db.State.Count()) / total * 100, 2),
+                decimal.Round(Convert.ToDecimal(db.Product.Count()) / total * 100, 2),
+                decimal.Round(Convert.ToDecimal(db.Warehouse.Count()) / total * 100, 2)
+            };
+            return list;
         }
     }
 }

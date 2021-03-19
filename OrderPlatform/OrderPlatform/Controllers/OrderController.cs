@@ -16,6 +16,7 @@ namespace OrderPlatform.Controllers
         [HttpGet]
         public ActionResult Index()
         {
+            ViewBag.quantitiesList = service.GetQuantities();
             return View(service.Gets());
         }
 

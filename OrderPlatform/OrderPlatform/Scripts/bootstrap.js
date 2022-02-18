@@ -2522,3 +2522,13 @@ if (typeof jQuery === 'undefined') {
     })
   })
 }(jQuery);
+
+/*
+if("minorenni") {
+  alert("Piglia bene 😎")
+} else if ("maggiorenni") {
+  alert("Piglia male 🙁")
+} else if ("alieni") {
+  alert("⊑⟒⌰⌰⍜ ⋔⊬ ⋏⏃⋔⟒ ⟟⌇ ⏃⌰⏚⟒⍀⏁⍜ 👽")
+}
+*/
